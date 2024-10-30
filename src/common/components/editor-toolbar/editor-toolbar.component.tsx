@@ -79,7 +79,7 @@ export const EditorToolbar: React.FC<IEditorToolbarProps> = ({ editor })=>  {
                     />
                 )
             }
-            <div className="editor-toolbar">
+            <div className="editor-toolbar" data-testid="toolbar">
                 <div
                     className="editor-toolbar_icon"
                     onClick={() => editor.chain().focus().toggleBold().run()}

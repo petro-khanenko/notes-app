@@ -7,4 +7,6 @@ export const LOCALIZATION: ILocalozation = {
     cancelBtnText: 'Cancel',
     urlLabelText: 'Enter link URL',
     imageLabelText: 'Enter image URL',
+    inputPlaceholderText: 'Enter note title here...',
+    contentPlaceholderText: 'Enter something...',
 }

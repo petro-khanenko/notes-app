@@ -10,6 +10,7 @@ import TaskItem from '@tiptap/extension-task-item';
 import {EditorToolbar} from '../editor-toolbar';
 import {ENoteKeys, INoteData} from '../../types';
 import {validateContent, validateTitle} from '../../utils';
+import {LOCALIZATION} from '../../constants';
 
 export interface IListItemEditorProps {
     data: INoteData;
@@ -44,8 +45,8 @@ export const ListItemEditor: React.FC<IListItemEditorProps> = ({
     }, [])
 
     const editor = useEditor({
-        content: content,
-        extensions: [StarterKit, Placeholder, Image, Link, TaskList, TaskItem],
+        content,
+        extensions: [StarterKit, Placeholder.configure({placeholder: LOCALIZATION.contentPlaceholderText}), Image, Link, TaskList, TaskItem],
         onUpdate: ({editor}) => {
             handleError(ENoteKeys.CONTENT, editor.getText(), validateContent, editor.getHTML());
             onChangeContent(editor.getHTML(), {id, title});
@@ -64,8 +65,10 @@ export const ListItemEditor: React.FC<IListItemEditorProps> = ({
 
     const handleActiveNodeId = useCallback((e: React.MouseEvent<HTMLElement>) => {
         e.stopPropagation();
-        onSetActiveNoteId(id);
-    }, [id, onSetActiveNoteId]);
+        if (activeNoteId !== id) {
+            onSetActiveNoteId(id);
+        }
+    }, [id, activeNoteId, onSetActiveNoteId]);
 
     if (!editor) {
         return null;
@@ -77,6 +80,7 @@ export const ListItemEditor: React.FC<IListItemEditorProps> = ({
         <>
             <div
                 className={`list-item-edit ${activeNoteId === id ? 'full-height' : ''}`}
+                data-testid="item"
                 onClick={handleActiveNodeId}
             >
                 <div className="list-item-edit_header">
@@ -84,15 +88,17 @@ export const ListItemEditor: React.FC<IListItemEditorProps> = ({
                         className="list-item-edit_input"
                         value={title}
                         onChange={handleChangeTitle}
+                        placeholder={LOCALIZATION.inputPlaceholderText}
                         autoFocus
+                        data-testid="input"
                     />
                     <div className="list-item-edit_icons">
-                        <GiCrossMark className="list-item-edit_icons__cancel" onClick={handleRemove}/>
+                        <GiCrossMark className="list-item-edit_icons__cancel" onClick={handleRemove} data-testid="removeBtn" />
                     </div>
                 </div>
                 {
                     activeNoteId === id && (
-                        <EditorToolbar editor={editor}/>
+                        <EditorToolbar editor={editor} />
                     )
                 }
                 <EditorContent editor={editor}/>

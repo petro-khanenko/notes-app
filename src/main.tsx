@@ -12,6 +12,7 @@ const Main: React.FC = ()=> {
     return (
         <div
             className="main"
+            data-testid="main"
             onClick={() => handleActiveId(null)}
         >
             <NotesList

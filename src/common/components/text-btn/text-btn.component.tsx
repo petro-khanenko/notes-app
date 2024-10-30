@@ -12,6 +12,7 @@ export const TextBtn: React.FC<ICreateBtnProps> = ({type = 'primary', Icon, text
     return (
         <div
             className={`btn_container btn_${type}`}
+            data-testid="addBtn"
             onClick={onClick}
         >
             { Icon && <Icon className="btn_icon" /> }
