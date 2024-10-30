@@ -1,0 +1,35 @@
+@use '../../style/variables.style' as vars;
+
+.editor-toolbar {
+  background: vars.$toolbar-bg-color;
+  border-bottom: 2px solid vars.$toolbar-border-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+
+  &_icon {
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: vars.$toolbar-icon-color;
+
+    & + .editor-toolbar_icon {
+      margin-left: 2px;
+    }
+
+    &__disabled {
+      color: rgba(vars.$toolbar-icon-color, 0.5);
+      pointer-events: none;
+    }
+
+    &:hover {
+      background: vars.$toolbar-icon-color;
+      color: vars.$toolbar-bg-color;
+      cursor: pointer;
+    }
+  }
+}

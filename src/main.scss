@@ -1,0 +1,24 @@
+@use "common/style/variables.style" as vars;
+@use "pages/notes-list/notes-list.style";
+@use "common/components/list-item-editor/list-item-editor.style";
+@use "common/components/text-btn/text-btn.style";
+@use "common/components/editor-toolbar/editor-toolbar.style";
+@use "common/components/modal/modal.style";
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(0deg, vars.$bg-color-end 15%, vars.$bg-color-mid 50%, vars.$bg-color-start 100%) no-repeat fixed;
+  font-family: 'Playwrite GB S', cursive;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    min-height: 100vh;
+    padding: 16px;
+    box-sizing: border-box;
+}

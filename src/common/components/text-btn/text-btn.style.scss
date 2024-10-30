@@ -1,0 +1,33 @@
+@use '../../style/variables.style' as vars;
+
+.btn {
+  &_container {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 3px;
+    cursor: pointer;
+  }
+
+  &_primary {
+    color: vars.$btn-primary-color;
+    &:hover {
+      color: vars.$btn-primary-hover-color;
+    }
+  }
+
+  &_cancel {
+    color: vars.$btn-primary-color;
+    &:hover {
+      color: vars.$btn-primary-hover-color;
+    }
+  }
+
+  &_icon {
+    font-size: 1rem;
+  }
+
+  &_text {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,74 @@
+@use '../../style/variables.style' as vars;
+
+.modal {
+  background-color: vars.$modal-overlay-color;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+
+  &_content {
+    background-color: vars.$toolbar-bg-color;
+    padding: 16px;
+    margin: 8px;
+    position: relative;
+    overflow-y: auto;
+    min-width: 300px;
+    max-height: calc(100% - 2rem);
+    border-radius: 8px;
+  }
+
+  &_label {
+    margin-bottom: 0.5rem;
+    display: inline-block;
+  }
+
+  &_input {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid vars.$toolbar-border-color;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &_btns {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: 16px;
+
+    button {
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: vars.$white-color;
+    }
+
+    &__confirm {
+      background-color: vars.$btn-primary-color;
+
+      &:hover {
+        background-color: vars.$btn-primary-hover-color;
+      }
+    }
+
+    &__cancel {
+      background-color: vars.$btn-cancel-color;
+
+      &:hover {
+        background-color: vars.$btn-cancel-hover-color;
+      }
+    }
+  }
+}

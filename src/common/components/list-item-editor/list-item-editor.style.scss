@@ -1,0 +1,106 @@
+@use '../../style/variables.style' as vars;
+
+.list-item-edit {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  min-height: 100px;
+  background-color: vars.$item-bg-color;
+  border: 2px solid vars.$edit-border-color;
+  border-radius: 12px;
+
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 12px;
+    padding: 8px 12px;
+    border-bottom: 2px solid vars.$edit-border-color;
+  }
+
+  &_input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-family: 'Playwrite GB S', cursive;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  &_icons {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 12px;
+    cursor: pointer;
+
+    &__save {
+      font-size: 1.125rem;
+      fill: vars.$btn-primary-color;
+      &:hover {
+        fill: vars.$btn-primary-hover-color;
+      }
+    }
+
+    &__cancel {
+      fill: vars.$btn-cancel-color;
+      &:hover {
+        fill: vars.$btn-cancel-hover-color;
+      }
+    }
+  }
+}
+
+.tiptap {
+  outline: none;
+  border: none;
+  padding: 8px 12px;
+  min-height: 60px;
+  box-sizing: border-box;
+  font-family: 'Playwrite GB S', cursive;
+  position: relative;
+
+  img {
+    margin-top: 4px;
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  p {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+  }
+
+  /* Task list specific styles */
+  ul[data-type="taskList"] {
+    list-style: none;
+    margin-top: 0;
+    margin-left: 0;
+    padding: 0;
+
+    li {
+      align-items: flex-start;
+      display: flex;
+
+      > label {
+        flex: 0 0 auto;
+        margin-right: 0.5rem;
+        user-select: none;
+        position: relative;
+        top: 0.25rem;
+      }
+
+      > div {
+        flex: 1 1 auto;
+      }
+    }
+
+    input[type="checkbox"] {
+      cursor: pointer;
+    }
+
+    ul[data-type="taskList"] {
+      margin: 0;
+    }
+  }
+}
