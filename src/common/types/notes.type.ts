@@ -5,7 +5,7 @@ export enum ENoteKeys {
 }
 
 export interface INoteData {
-    [ENoteKeys.ID]: number,
-    [ENoteKeys.TITLE]: string,
-    [ENoteKeys.CONTENT]: string,
+    [ENoteKeys.ID]: number;
+    [ENoteKeys.TITLE]: string;
+    [ENoteKeys.CONTENT]: string;
 }

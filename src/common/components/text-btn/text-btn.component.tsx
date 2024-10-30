@@ -4,7 +4,7 @@ import {TextBtnType} from '../../types';
 interface ICreateBtnProps {
     type?: TextBtnType;
     Icon?: React.FC<{className?: string}>;
-    text: string
+    text: string;
     onClick: () => void;
 }
 

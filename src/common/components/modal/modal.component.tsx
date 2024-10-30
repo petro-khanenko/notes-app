@@ -1,5 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {LOCALIZATION} from '../../constants';
+import {validateURL} from '../../utils';
 
 interface IModalProps {
     label?: string;
@@ -14,9 +15,12 @@ export const Modal: React.FC<IModalProps> = ({
                                              }) => {
 
     const [inputValue, setInputValue] = useState('');
+    const [error, setError] = useState<boolean | string>(false);
 
     const handleConfirm = useCallback(() => {
-        onConfirm(inputValue);
+        const error = validateURL(inputValue);
+        setError(error);
+        if (!error) onConfirm(inputValue);
     }, [inputValue]);
 
     const handleCancel = useCallback(() => {
@@ -25,7 +29,7 @@ export const Modal: React.FC<IModalProps> = ({
     }, []);
 
     const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const {value} = e.currentTarget;
+        const value = e.currentTarget.value.trim();
         setInputValue(value);
     }, []);
 
@@ -40,6 +44,13 @@ export const Modal: React.FC<IModalProps> = ({
                         value={inputValue}
                         onChange={handleChange}
                     />
+                    {
+                       error && (
+                            <div className="modal_error">
+                                {error}
+                            </div>
+                        )
+                    }
                     <div className="modal_btns">
                         <button
                             className="modal_btns__confirm"

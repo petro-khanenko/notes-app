@@ -5,12 +5,12 @@ import {ListItemEditor, TextBtn} from '../../common/components';
 import {ENoteKeys, INoteData} from '../../common/types';
 import {trimValues} from '../../common/utils';
 
-interface NotesListProps {
-    activeNoteId: number | null,
+interface INotesListProps {
+    activeNoteId: number | null;
     onSetActiveNoteId: (id: number) => void;
 }
 
-export const NotesList: React.FC<NotesListProps> = ({activeNoteId, onSetActiveNoteId}) => {
+export const NotesList: React.FC<INotesListProps> = ({activeNoteId, onSetActiveNoteId}) => {
     const [notes, setNotes] = useState<INoteData[]>([]);
     const [isFetching, setLoading] = useState(true);
     const [currentNote, setCurrentNote] = useState<INoteData>({

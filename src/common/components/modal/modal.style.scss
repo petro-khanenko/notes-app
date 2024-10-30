@@ -71,4 +71,11 @@
       }
     }
   }
+
+  &_error {
+    color: vars.$error-color;
+    font-size: 0.75rem;
+    margin-top: -12px;
+    margin-bottom: 8px;
+  }
 }
