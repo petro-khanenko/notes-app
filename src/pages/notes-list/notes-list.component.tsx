@@ -21,9 +21,8 @@ export const NotesList: React.FC<INotesListProps> = ({activeNoteId, onSetActiveN
     const [createMode, setCreateMode] = useState(false);
 
     useEffect(() => {
-        window.electron.readFile().then((json) => {
-            const data = json ? JSON.parse(json) : [];
-            setNotes(data);
+        window.electron.readFile().then((data) => {
+            setNotes(Array.isArray(data) ? data : []);
             setLoading(false);
         });
     }, []);
