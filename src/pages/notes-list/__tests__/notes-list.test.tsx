@@ -1,11 +1,12 @@
 import React from 'react';
+import {vi} from 'vitest';
 import {render, fireEvent, screen, act} from '@testing-library/react';
 import {NotesList} from '../notes-list.component';
 import {LOCALIZATION} from '../../../common/constants';
 
 const props = {
     activeNoteId: 123456789,
-    onSetActiveNoteId: jest.fn(),
+    onSetActiveNoteId: vi.fn(),
 }
 
 const note = {

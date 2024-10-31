@@ -1,4 +1,5 @@
 import React from 'react';
+import {vi} from 'vitest';
 import {render, fireEvent, screen, act} from '@testing-library/react';
 import {ListItemEditor} from '../list-item-editor.component';
 import {LOCALIZATION} from '../../../constants';
@@ -12,10 +13,10 @@ const note = {
 const props = {
     data: note,
     activeNoteId: 123456789,
-    onChangeTitle: jest.fn(),
-    onChangeContent: jest.fn(),
-    onRemove: jest.fn(),
-    onSetActiveNoteId: jest.fn(),
+    onChangeTitle: vi.fn(),
+    onChangeContent: vi.fn(),
+    onRemove: vi.fn(),
+    onSetActiveNoteId: vi.fn(),
 }
 
 describe('ListItemEditor component', () => {

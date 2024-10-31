@@ -11,8 +11,7 @@
 - npm install
 - npm run start
 ### Scripts to run tests:
-- npm run tests
-- npm run vitest
+- npm run test
 ### Scripts to create desktop app. App will appear in '/out' directory:
 - npm run make
 
