@@ -1,7 +1,7 @@
 import React, {useCallback, useDeferredValue, useEffect, useState} from 'react';
 import {FaPlus} from 'react-icons/fa';
 import {LOCALIZATION} from '../../common/constants';
-import {ListItemEditor, TextBtn} from '../../common/components';
+import {Error, ListItemEditor, TextBtn} from '../../common/components';
 import {ENoteKeys, INoteData} from '../../common/types';
 import {trimValues} from '../../common/utils';
 
@@ -19,6 +19,7 @@ export const NotesList: React.FC<INotesListProps> = ({activeNoteId, onSetActiveN
         [ENoteKeys.CONTENT]: '',
     });
     const [createMode, setCreateMode] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         window.electron.readFile().then((data) => {
@@ -70,7 +71,7 @@ export const NotesList: React.FC<INotesListProps> = ({activeNoteId, onSetActiveN
             await window.electron.writeFile(data);
             setNotes(data);
         } catch (e) {
-            console.log('SAVING NOTE ERROR', e);
+            setError('SAVING NOTE ERROR');
         }
     }, [deferredNote, notes, createMode]);
 
@@ -80,6 +81,13 @@ export const NotesList: React.FC<INotesListProps> = ({activeNoteId, onSetActiveN
         }
     }, [deferredNote, isFetching]);
 
+    useEffect(() => {
+        if (error) {
+            setTimeout(() => setError(''), 4000);
+        }
+
+    }, [error]);
+
     const handleRemove = useCallback(async (removeId: number) => {
         try {
             const data = [...notes];
@@ -88,12 +96,17 @@ export const NotesList: React.FC<INotesListProps> = ({activeNoteId, onSetActiveN
             await window.electron.writeFile(data);
             setNotes(data);
         } catch (e) {
-            console.log('REMOVING NOTE ERROR', e);
+            setError('REMOVING NOTE ERROR');
         }
     }, [notes]);
 
     return (
         <>
+            {
+                error && (
+                    <Error error={error} />
+                )
+            }
             <div className="controls">
                 <TextBtn
                     Icon={FaPlus}
