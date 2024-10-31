@@ -43,10 +43,12 @@ export const Modal: React.FC<IModalProps> = ({
                         className="modal_input"
                         value={inputValue}
                         onChange={handleChange}
+                        placeholder={LOCALIZATION.modalInputPlaceholderText}
+                        data-testid="modalInput"
                     />
                     {
                        error && (
-                            <div className="modal_error">
+                            <div className="modal_error" data-testid="modalError">{error}
                                 {error}
                             </div>
                         )
@@ -55,12 +57,15 @@ export const Modal: React.FC<IModalProps> = ({
                         <button
                             className="modal_btns__confirm"
                             onClick={handleConfirm}
+                            disabled={inputValue.length === 0}
+                            data-testid="confirmBtn"
                         >
                             {LOCALIZATION.confirmBtnText}
                         </button>
                         <button
                             className="modal_btns__cancel"
                             onClick={handleCancel}
+                            data-testid="cancelBtn"
                         >
                             {LOCALIZATION.cancelBtnText}
                         </button>

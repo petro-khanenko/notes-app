@@ -154,6 +154,7 @@ export const EditorToolbar: React.FC<IEditorToolbarProps> = ({ editor })=>  {
                 </div>
                 <div
                     className="editor-toolbar_icon"
+                    data-testid="addUrlBtn"
                     onClick={handleOpenModal(EModalTypes.URL)}
                 >
                     <RiLink />
@@ -166,6 +167,7 @@ export const EditorToolbar: React.FC<IEditorToolbarProps> = ({ editor })=>  {
                 </div>
                 <div
                     className="editor-toolbar_icon"
+                    data-testid="addImgBtn"
                     onClick={handleOpenModal(EModalTypes.IMAGE)}
                 >
                     <FaImage />

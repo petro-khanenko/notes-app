@@ -20,10 +20,8 @@ const createWindow = (): void => {
     width: 500,
     resizable: false,
     webPreferences: {
-      nodeIntegration: true,
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
-
   });
 
   // and load the index.html of the app.
@@ -33,7 +31,7 @@ const createWindow = (): void => {
   mainWindow.setMenuBarVisibility(false);
 
   // Open DevTools
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished

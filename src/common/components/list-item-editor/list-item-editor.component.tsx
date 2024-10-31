@@ -26,7 +26,7 @@ interface IErrors {
     [ENoteKeys.CONTENT]: string;
 }
 
-export const ListItemEditor: React.FC<IListItemEditorProps> = ({
+export const ListItemEditor: React.FC<IListItemEditorProps> = React.memo(({
                                                                    data: {id, title = '', content = ''},
                                                                    activeNoteId,
                                                                    onChangeTitle,
@@ -113,4 +113,4 @@ export const ListItemEditor: React.FC<IListItemEditorProps> = ({
             }
         </>
     )
-}
+})

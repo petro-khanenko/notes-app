@@ -9,4 +9,5 @@ export const LOCALIZATION: ILocalozation = {
     imageLabelText: 'Enter image URL',
     inputPlaceholderText: 'Enter note title here...',
     contentPlaceholderText: 'Enter something...',
+    modalInputPlaceholderText: 'Enter URL address here...',
 }
