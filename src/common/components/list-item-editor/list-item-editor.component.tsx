@@ -42,7 +42,7 @@ export const ListItemEditor: React.FC<IListItemEditorProps> = React.memo(({
             ...prev,
             [key]: error,
         }));
-    }, [])
+    }, []);
 
     const editor = useEditor({
         content,
