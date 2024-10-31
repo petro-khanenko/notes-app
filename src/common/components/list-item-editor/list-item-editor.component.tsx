@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {GiCrossMark} from 'react-icons/gi';
-import {EditorContent, useEditor} from '@tiptap/react';
+import {Editor, EditorContent, useEditor} from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
 import Image from '@tiptap/extension-image';
@@ -44,7 +44,7 @@ export const ListItemEditor: React.FC<IListItemEditorProps> = React.memo(({
         }));
     }, []);
 
-    const editor = useEditor({
+    const editor: Editor = useEditor({
         content,
         extensions: [StarterKit, Placeholder.configure({placeholder: LOCALIZATION.contentPlaceholderText}), Image, Link, TaskList, TaskItem],
         onUpdate: ({editor}) => {
