@@ -51,6 +51,7 @@ export const ListItemEditor: React.FC<IListItemEditorProps> = React.memo(({
             handleError(ENoteKeys.CONTENT, editor.getText(), validateContent, editor.getHTML());
             onChangeContent(editor.getHTML(), {id, title});
         },
+        onBlur: () => handleError(ENoteKeys.CONTENT, editor.getText(), validateContent, editor.getHTML()),
     });
 
     const handleChangeTitle = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,7 +75,7 @@ export const ListItemEditor: React.FC<IListItemEditorProps> = React.memo(({
         return null;
     }
 
-    const renderErrors = Object.values(errors).join('\n');
+    const isErrors = !!Object.values(errors).join('\n').length;
 
     return (
         <>
@@ -88,6 +89,7 @@ export const ListItemEditor: React.FC<IListItemEditorProps> = React.memo(({
                         className="list-item-edit_input"
                         value={title}
                         onChange={handleChangeTitle}
+                        onBlur={() => handleError(ENoteKeys.TITLE, title, validateTitle)}
                         placeholder={LOCALIZATION.inputPlaceholderText}
                         autoFocus
                         data-testid="input"
@@ -103,12 +105,17 @@ export const ListItemEditor: React.FC<IListItemEditorProps> = React.memo(({
                 }
                 <EditorContent editor={editor}/>
             </div>
-
             {
-                !!renderErrors.length && (
-                    <div className="list-item-edit_error">
-                        {renderErrors}
-                    </div>
+                isErrors && (
+                    <>
+                        {
+                            Object.values(errors).map((error: string) => (
+                                <div className="list-item-edit_error">
+                                    {error}
+                                </div>
+                            ))
+                        }
+                    </>
                 )
             }
         </>

@@ -5,7 +5,7 @@ const URL_REGEXP = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9
 export const validateTitle = (title: string) => {
     switch (true) {
         case !title.trim():
-            return 'Title cannot be empty!';
+            return 'Note without title is allowed but it will be less useful. We recommend you to fill it!';
         case title.trim().length >= MAX_TITLE_LENGTH:
             return `Title is too long. The maximum length is ${MAX_TITLE_LENGTH} characters!`;
         default:
@@ -16,7 +16,7 @@ export const validateTitle = (title: string) => {
 export const validateContent = (content: string, html?: string) => {
     switch (true) {
         case !content.trim() && !html.includes('img'):
-            return 'Content cannot be empty!';
+            return 'Note without content is allowed but it will be less useful. We recommend you to fill it!';
         case content.trim().length >= MAX_CONTENT_LENGTH:
             return `Title is too long. The maximum length is ${MAX_CONTENT_LENGTH} characters!`;
         default:

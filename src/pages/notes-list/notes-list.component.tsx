@@ -21,11 +21,15 @@ export const NotesList: React.FC<INotesListProps> = ({activeNoteId, onSetActiveN
     const [createMode, setCreateMode] = useState(false);
     const [error, setError] = useState('');
 
-    useEffect(() => {
+    const getData = useCallback(() => {
         window.electron.readFile().then((data) => {
             setNotes(Array.isArray(data) ? data : []);
             setLoading(false);
         });
+    }, [])
+
+    useEffect(() => {
+        getData();
     }, []);
 
     const handleChangeTitle = useCallback((value: string, note: Omit<INoteData, ENoteKeys.TITLE>) => {
@@ -71,6 +75,8 @@ export const NotesList: React.FC<INotesListProps> = ({activeNoteId, onSetActiveN
             await window.electron.writeFile(data);
             setNotes(data);
         } catch (e) {
+            // Get actual data on error and show error
+            getData();
             setError('SAVING NOTE ERROR');
         }
     }, [deferredNote, notes, createMode]);
@@ -96,6 +102,8 @@ export const NotesList: React.FC<INotesListProps> = ({activeNoteId, onSetActiveN
             await window.electron.writeFile(data);
             setNotes(data);
         } catch (e) {
+            // Get actual data on error and show error
+            getData();
             setError('REMOVING NOTE ERROR');
         }
     }, [notes]);
